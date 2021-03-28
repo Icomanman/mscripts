@@ -6,6 +6,7 @@ function x = SOR(A, b)
   
   % init x:
   x_init = ones(length(b), 1);
+  [~, ~, LInf] = vectorNorm(x_init'); % vectorNorm only accepts a row vector
   
   LA = tril(A, -1);
   UA = triu(A, 1);
@@ -26,7 +27,6 @@ function x = SOR(A, b)
     om = 1;
     
     while diff > tol && limit <= 500
-     [~, ~, LInf] = vectorNorm(x_init'); % vectorNorm only accepts a row vector
      LInf0 = LInf;
 
      sum_DL_inv = (D - (om * LA))^1;
@@ -43,12 +43,13 @@ function x = SOR(A, b)
      limit = limit + 1;
      
      plot(limit, x(1), 'b+', "LineWidth", 2);
+%      plot(limit, LInf, 'ro', "LineWidth", 1);
      hold on
      
-     if diff > 50
-       fprintf("break: %d", diff);
-      break
-     end
+%      if diff > 50
+%        fprintf("break: %d", diff);
+%       break
+%      end
      
     end
     
