@@ -23,13 +23,20 @@ function x = SOR(A, b)
   if invertible == true
     diff = 1;
     limit = 1; % just in case...
+    om = 1.1;
     
-    
-    while diff > tol && limit <= 500
+    while diff > tol && limit <= 500 || x(1) > 1e6
      [~, ~, LInf] = vectorNorm(x'); % vectorNorm only accepts a row vector
      LInf0 = LInf;
-     div = (D + LA)^1 ; 
-     x = div * (b - ((UA + (0 * D)) * x));
+     %div = (D + LA)^1; 
+     %x = div * (b - ((UA + (0 * D)) * x));
+     
+     sum_DL_inv = (D - (om * LA))^1;
+     D_om =(1 - om) * D;
+     U_om = om * UA;
+     
+     x = (sum_DL_inv * (U_om + D_om) * x) + ((om * sum_DL_inv) * b);
+     
      fprintf("After %i iterations: %d\n", limit, x(1));
           
      [~, ~, LInf] = vectorNorm(x'); % vectorNorm only accepts a row vector
@@ -41,7 +48,6 @@ function x = SOR(A, b)
     end
     
     hold off
-    
   end
   
 end
