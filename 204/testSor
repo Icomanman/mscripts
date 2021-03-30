@@ -1,0 +1,24 @@
+# Created by Octave 4.2.2, Tue Mar 30 18:57:49 2021 PST <icomanman@sota1911>
+# name: A
+# type: matrix
+# rows: 2
+# columns: 2
+ 3 1
+ 2 4
+
+
+# name: b
+# type: matrix
+# rows: 2
+# columns: 1
+ -2
+ 1
+
+
+# name: bT
+# type: matrix
+# rows: 1
+# columns: 2
+ -2 1
+
+

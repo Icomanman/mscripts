@@ -24,7 +24,7 @@ function x = SOR(A, b)
   if invertible == true
     diff = 1;
     limit = 1; % just in case...
-    om = 1;
+    om = 1.5;
     
     while diff > tol && limit <= 500
      LInf0 = LInf;
@@ -33,7 +33,7 @@ function x = SOR(A, b)
      D_om = (1 - om) * D;
      U_om = om * UA;
      
-     x = (sum_DL_inv * (U_om + D_om) * x_init) + ((om * sum_DL_inv) * b);
+     x = (sum_DL_inv * ((U_om + D_om) * x_init)) + ((om * sum_DL_inv) * b);
      x_init = x;
      
      fprintf("After %i iterations: %d\n", limit, x(1));
