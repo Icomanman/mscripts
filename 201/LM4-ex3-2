@@ -1,0 +1,46 @@
+# Created by Octave 4.2.2, Tue Mar 30 21:10:05 2021 PST <icomanman@sota1911>
+# name: F
+# type: matrix
+# rows: 3
+# columns: 1
+ 383
+ 321.4
+ 0
+
+
+# name: Kf
+# type: matrix
+# rows: 3
+# columns: 3
+ 634.803 -191.78 -353.553
+ -191.78 447.303 353.553
+ -353.553 353.553 682.962
+
+
+# name: Kr
+# type: matrix
+# rows: 3
+# columns: 3
+ 353.533 -353.533 -353.533
+ -281.25 -162.375 -329.429
+ -162.375 -93.75 0
+
+
+# name: R
+# type: matrix
+# rows: 3
+# columns: 1
+ -63.62698808158
+ -383.7456439959317
+ -258.2942891075402
+
+
+# name: del
+# type: matrix
+# rows: 3
+# columns: 1
+ 0.8718881772323829
+ 1.245028760847275
+ -0.1931659049241332
+
+
