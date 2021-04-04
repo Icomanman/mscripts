@@ -24,13 +24,14 @@ function [x, omega, conv] = SOR(A, b)
 	end
 
 	if invertible == true
+    % figure("Name", "LInf vs Iterations");
 		% Loop through different omegs:
-		for j = 1 : length(omegs)
-
+    for j = 1 : length(omegs)
+      
 			diff = 1;
-      	i = 1; % just in case...
-      	limit = 250;
-      	om = omegs(j);
+      i = 1; % just in case...
+      limit = 250;
+      om = omegs(j);
 
       while diff > tol && i <= limit
       	LInf0 = LInf;
@@ -47,19 +48,23 @@ function [x, omega, conv] = SOR(A, b)
 				[~, ~, LInf] = vectorNorm(x_init'); % vectorNorm only accepts a row vector
 				diff = abs(LInf0 - LInf);
 				
-				%plot(i, LInf, markers(j));
-				%hold on
-
 				i = i + 1;
+        
+        % plot(i, LInf, markers(j));
+        % hold on
       end
-
-			plot(omegs(j), i, 'ro', "LineWidth", 1);
-			iterations(j) = i;
-			hold on
-
-		end
-		hold off
-
+      
+      iterations(j) = i;
+			
+    end
+    % hold off
+    
+    figure("Name", "Omega vs Iterations");
+    plot(omegs, iterations, '*', "LineWidth", 1);
+    title("Omega vs Iterations");
+    xlabel("Omega");
+    ylabel("Iterations");
+    
   end
   
   conv = min(iterations);
