@@ -5,14 +5,8 @@ function [x, omega, conv] = thomas(A, b)
 	omegs = (1.0: 0.1: 1.9);
 	iterations = length(omegs);
 	markers = ['o','+','*','.','x','s','d','_','|','v', '^'];
-
-	x_init = ones(length(b), 1);
+  
 	[~, ~, LInf] = vectorNorm(x_init'); % vectorNorm only accepts a row vector
-
-	LA = tril(A, -1);
-	UA = triu(A, 1);
-	D = diag(diag(A));
-	invertible = false;
 
 	try
 		if det(A) ~= 0
