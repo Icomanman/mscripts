@@ -1,13 +1,5 @@
 
-function [x, omega, conv] = thomas(A, b)
-	% tol and omegs are harcoded for this problem
-	tol = 10^(-4);
-	omegs = (1.0: 0.1: 1.9);
-	iterations = length(omegs);
-	markers = ['o','+','*','.','x','s','d','_','|','v', '^'];
-  
-	[~, ~, LInf] = vectorNorm(x_init'); % vectorNorm only accepts a row vector
-
+function x = thomas(A, b)
 	try
 		if det(A) ~= 0
 			invertible = true;
@@ -17,52 +9,31 @@ function [x, omega, conv] = thomas(A, b)
 	end
 
 	if invertible == true
-    % figure("Name", "LInf vs Iterations");
-		% Loop through different omegs:
-    for j = 1 : length(omegs)
-      
-			diff = 1;
-      i = 1; % just in case...
-      limit = 250;
-      om = omegs(j);
 
-      while diff > tol && i <= limit
-      	LInf0 = LInf;
-
-      	diff_DL_inv = (D - (om * LA))^-1;
-      	D_om = (1 - om) * D;
-      	U_om = om * UA;
-
-      	x = diff_DL_inv * ((om * b) + (U_om + D_om) * x_init);
-      	x_init = x;
-
-      	fprintf("After %i iterations: %d\n", i, LInf);
-
-				[~, ~, LInf] = vectorNorm(x_init'); % vectorNorm only accepts a row vector
-				diff = abs(LInf0 - LInf);
-				
-				i = i + 1;
-        
-        % plot(i, LInf, markers(j));
-        % hold on
-      end
-      
-      iterations(j) = i;
-			
-    end
-    % hold off
+    [n, ~] = size(A);
+    LA = tril(A, -1);
+    UA = triu(A, 1);
+    DA = diag(A);
     
-    figure("Name", "Omega vs Iterations");
-    plot(omegs, iterations, '*', "LineWidth", 1);
-    title("Omega vs Iterations");
-    xlabel("Omega");
-    ylabel("Iterations");
+    % vectors of diagonals
+    e = diag(LA, -1);
+    f = DA;
+    g = diag(UA, 1);
+
+    for i = 1 : (n - 1)
+      % Forward Substitution
+      e(i) = e(i) / f(i);
+      f(i + 1) = f(i + 1) - (e(i) * g(i));
+      b(i + 1) = b(i + 1) - (e(i) * b(i));
+    end
+    
+    x(n) = b(n) / f(n);
+    
+    for j = (n - 1) : -1 : 1
+      % Back Substitution
+      x(j) = (b(j) - (g(j) * x(j + 1))) / f(j);
+    end
     
   end
-  
-  conv = min(iterations);
-	idx = iterations == conv;
-	omega = idx;
-	fprintf("Index: %i\n", idx);
 	
 end
