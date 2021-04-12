@@ -1,4 +1,4 @@
-
+% 10 April 2021
 function x = thomas(A, b)
 	try
 		if det(A) ~= 0
@@ -24,7 +24,7 @@ function x = thomas(A, b)
       % Forward Substitution
       e(i) = e(i) / f(i);
       f(i + 1) = f(i + 1) - (e(i) * g(i));
-      b(i + 1) = b(i + 1) - (e(i) * b(i));
+      b(i + 1) = b(i + 1) - (e(i) * b(i)); 
     end
     
     x(n) = b(n) / f(n);
