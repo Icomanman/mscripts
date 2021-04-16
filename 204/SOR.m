@@ -4,7 +4,7 @@ function [x, omega, conv] = SOR(A, b)
 	tol = 10^(-4);
 	omegs = (1.0: 0.1: 1.9);
 	iterations = length(omegs);
-	% markers = ['o','+','*','.','x','s','d','_','|','v', '^'];
+	markers = ['o','+','*','.','x','s','d','_','|','v', '^'];
 
 	x_init = ones(length(b), 1);
 	[~, ~, LInf] = vectorNorm(x_init'); % vectorNorm only accepts a row vector
@@ -49,8 +49,8 @@ function [x, omega, conv] = SOR(A, b)
 				
 				i = i + 1;
         
-        % plot(i, LInf, markers(j));
-        % hold on
+        plot(i, LInf, markers(j));
+        hold on
       end
       
       iterations(j) = i;

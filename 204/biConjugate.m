@@ -14,41 +14,51 @@ function x = biConjugate(A, b)
   end  
   
   if invertible
-    tol = 1e-4;
+    tol = 10^-4;
     n = length(b);
     
-    x =ones(n, 1);
+    x = -0.05 * ones(n, 1);
     r = b - (A * x);
     rh = r';
     rho = 1;
     
-    p = r;
-    ph = r';
+    p = zeros(n, 1);
     
-    LInf = 1;
+    [~, L2, LInf] = vectorNorm(rh);
+    del = 1;
     i = 1;
-    lim = 250;
+    lim = 200;
     
-    while LInf > tol && i < lim
-      
+    figure("Name", "Convergence vs Iterations");
+    
+    while del > tol && i < lim
+      LInf0 = LInf;
+      L20 = L2;
       beta = (rh * r)/ rho;
       
       p = r + (beta * p);
-      ph = rh + (beta * ph);
+      % ph = rh + (beta * ph);
+      ph = p';
       
-      v = A * b;
+      v = A * p;
       
       alpha = (rh * r) / (ph * v);
       x = x + (p * alpha);
             
       r = r - (v * alpha);
-      rh = rh - (v' * alpha);
+      rh = r';
+      % rh = rh - (v' * alpha);
       
       rho = rh * r;
-      [~, ~, LInf] = vectorNorm(rh);
+        
+      [~, L2, LInf] = vectorNorm(rh);
+      % del = abs(LInf0 - LInf);
+      del = abs(L20 - L2);
       i = i + 1;
       
-      plot(i, LInf, "r.");
+      plot(i, del, "r*", "LineWidth", 1.5);
+      xlabel("Iterations");
+      ylabel("del");
       hold on;
     end
     
