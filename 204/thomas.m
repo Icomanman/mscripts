@@ -1,5 +1,6 @@
 % 10 April 2021
 function x = thomas(A, b)
+  invertible = false;
 	try
 		if det(A) ~= 0
 			invertible = true;
