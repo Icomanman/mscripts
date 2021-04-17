@@ -23,25 +23,27 @@ dfc1 = @(c) (a + b + 3);
 dfc2 = @(c) ((2 * c) + a^2 + b^2);
 dfc3 = @(c) (a * b);
 
-tol = 1e-4;
-lim = 100;
+tol = 10^-5;
+lim = 50;
 i = 1;
 dela = 1;
 delb = 1;
 delc = 1;
 
-a = 0.5
-b = -2
-c = 2
+a = 0;
+b = -2;
+c = 0.732051;
 
 while dela > tol && delb > tol && delc > tol && i < lim
   
   F = -[fa(a), fb(b), fc(c)]';
+  
+  % Jacobi Matrix
   J = [dfa1(a), dfa2(a), dfa3(a); 
       dfb1(b), dfb2(b), dfb3(b); 
       dfc1(c), dfc2(c), dfc3(c)];
       
-%  dX = thomas(J, F);
+% dX = thomas(J, F);
   dX = GaussianElimination(J, F);
   
   an = dX(1) + a;
@@ -65,7 +67,11 @@ while dela > tol && delb > tol && delc > tol && i < lim
 %  plot(i, c, 'bx', "LineWidth", 1);
 %  hold on
 
-  plot3(a, b, c);
+  plot(i, dela, '*', "LineWidth", 1);
+  hold on
+  plot(i, delb, 'ro', "LineWidth", 1);
+  hold on
+  plot(i, delc, 'bx', "LineWidth", 1);
   hold on;
   
   i = i + 1;
@@ -73,6 +79,6 @@ while dela > tol && delb > tol && delc > tol && i < lim
 end
 
 %fprintf("a: %d, b: %d, c: %d\n", a, b, c);
-%fprintf("dela: %d, delb: %d, delc: %d\n", dela, delb, delc);
+fprintf("dela: %d, delb: %d, delc: %d\n", dela, delb, delc);
 
 hold off
