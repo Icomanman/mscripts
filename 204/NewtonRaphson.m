@@ -6,49 +6,48 @@
 % a^2 + b^2 + c^2 = 6
 % -abc = -2
 
-fa = @(a) (a + b + c + 2);
-fb = @(b) (a^2 + b^2 + c^2 - 6);
-fc = @(c) ((a * b * c) + 2);
+fa = @(a, b, c) (a + b + c + 2);
+fb = @(a, b, c) (a^2 + b^2 + c^2 - 6);
+fc = @(a, b, c) ((a * b * c) + 2);
 
 % Partial derivatives:
-dfa1 = @(a) (b + c + 3);
-dfa2 = @(a) ((2 * a) + b^2 + c^2);
-dfa3 = @(a) (b * c);
+dfa1 = 1;
+dfa2 = @(a) (2 * a);
+dfa3 = @(b,c) (b * c);
 
-dfb1 = @(b) (a + c + 3);
-dfb2 = @(b) ((2 * b) + a^2 + c^2);
-dfb3 = @(b) (a * c);
+dfb1 = 1;
+dfb2 = @(b) (2 * b);
+dfb3 = @(a,c) (a * c);
 
-dfc1 = @(c) (a + b + 3);
-dfc2 = @(c) ((2 * c) + a^2 + b^2);
-dfc3 = @(c) (a * b);
+dfc1 = 1;
+dfc2 = @(c) (2 * c);
+dfc3 = @(a,b) (a * b);
 
-tol = 10^-5;
-lim = 50;
+tol = 10^-4;
+lim = 51;
 i = 1;
 dela = 1;
 delb = 1;
 delc = 1;
 
-a = 0;
-b = -2;
-c = 0.732051;
+a = 10;
+b = -2.7;
+c = 0.7;
 
-while dela > tol && delb > tol && delc > tol && i < lim
+while (dela > tol || delb > tol || delc > tol) && i < lim
   
-  F = -[fa(a), fb(b), fc(c)]';
-  
-  % Jacobi Matrix
-  J = [dfa1(a), dfa2(a), dfa3(a); 
-      dfb1(b), dfb2(b), dfb3(b); 
-      dfc1(c), dfc2(c), dfc3(c)];
+  F = -[fa(a, b, c), fb(a, b, c), fc(a, b, c)]';
+
+  J = [ dfa1,       dfb1,       dfc1; 
+        dfa2(a),    dfb2(b),    dfc2(c); 
+        dfa3(b,c),  dfb3(a,c),  dfc3(a,b)];
       
-% dX = thomas(J, F);
-  dX = GaussianElimination(J, F);
+%   x = thomas(J, F);
+  x = GaussianElimination(J, F);
   
-  an = dX(1) + a;
-  bn = dX(2) + b;
-  cn = dX(3) + c;
+  an = x(1) + a;
+  bn = x(2) + b;
+  cn = x(3) + c;
 
   dela = abs(an - a);
   delb = abs(bn - b);
@@ -67,18 +66,17 @@ while dela > tol && delb > tol && delc > tol && i < lim
 %  plot(i, c, 'bx', "LineWidth", 1);
 %  hold on
 
-  plot(i, dela, '*', "LineWidth", 1);
+  plot(i, dela, 'b*', "LineWidth", 1.5);
   hold on
   plot(i, delb, 'ro', "LineWidth", 1);
   hold on
-  plot(i, delc, 'bx', "LineWidth", 1);
+  plot(i, delc, 'k.', "LineWidth", 3);
   hold on;
   
   i = i + 1;
   
 end
 
-%fprintf("a: %d, b: %d, c: %d\n", a, b, c);
-fprintf("dela: %d, delb: %d, delc: %d\n", dela, delb, delc);
+fprintf("> i = %i: da = %d, db = %d, dc = %d\n", i, dela, delb, delc);
 
 hold off
