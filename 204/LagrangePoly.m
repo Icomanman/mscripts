@@ -1,5 +1,10 @@
 
-function sum = LagrangePoly(x, X, Y)
+% y = value at the point of interest
+% x = point of interest for interpolation
+% X = vector of x data points
+% Y = vector of y data points
+
+function y = LagrangePoly(x, X, Y)
   n = length(X);
   sum = 0;
   for i = 1 : n
@@ -14,7 +19,7 @@ function sum = LagrangePoly(x, X, Y)
     end
     sum = sum + product;
   end
-  
+  y = sum;
 end
 
 % fx = @(x) (1.33333333*x^3 - 9.5*x^2 + 20.16666667*x - 11);
