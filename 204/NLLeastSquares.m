@@ -2,7 +2,7 @@
 % X = vector of x data points
 % Y = vector of y data points
 
-function [a, b] = NLLeastSquares(X, Y)
+function [a, b, s] = NLLeastSquares(X, Y)
   tol = 10^-4;
   n  = length(X);
   fx = @(a, b, x) a * x * exp(b * x);
@@ -14,14 +14,14 @@ function [a, b] = NLLeastSquares(X, Y)
   % init / containers
   J = zeros(n, 2); 
   r = ones(n, 1);
-  delA = zeros(1, 2);
+  p = zeros(1, 2);
   
-  a = 0.25; 
+  a = 3; 
   b = -0.5;
   iter = 0;
   s = 1;
   
-  while (s > tol || iter < 50)
+  while (s > tol && iter <= 15)
     
     for i = 1 : n
       % calculate the residual vector, r:
@@ -34,15 +34,26 @@ function [a, b] = NLLeastSquares(X, Y)
 
     J_t = J';
     Jj = J_t * J;
-    p = (Jj^-1) * (-J_t) * r;
+    p = (Jj^-1) * ((-J_t) * r);
     
-    sq = abs(r .* r);
-    s = sq .+ sq;
+    a = a + p(1);
+    b = b + p(2);
     
-    a = a + delA(1);
-    b = b + delA(2);
+    sq = abs(r.^2);
+    s = sum(sq);
+    
+    xlabel("iterations");
+    
+    plot (iter, a, "*", "LineWidth", 1);
+    hold on
+    plot (iter, b, "o", "LineWidth", 1);
+    hold on
+    plot (iter, s, "b*", "LineWidth", 1.5);
+    hold on
+    
+    legend("Alpha values", "Beta values", "Sum of the Squares");
     
     iter = iter + 1;
   end
-  
+  hold off
 end
