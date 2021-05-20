@@ -1,0 +1,8 @@
+
+function area = GaussQuad(fn, interval)
+  n = 2; % constant
+  % coefficients, from the lookup table
+  w = [0.5555555556, 0.8888888889, 0.555555];
+  
+  
+end
