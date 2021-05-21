@@ -7,8 +7,8 @@ function [area, B0] = AdQuad(fn)
   tol = 1 * 10^-5; % constant for this problem
   interval = [0 3]; % constant for this problem
   converged = 0;
-    % loop from order 2 (minimum for Boole) to 6 (trial):
-    for k = 2 : 6
+    % loop from order 2 (minimum for Boole) to 8 (trial):
+    for k = 2 : 8
       n0 = 2^(k - 1); 
       n = 2^k;
 
@@ -17,7 +17,7 @@ function [area, B0] = AdQuad(fn)
       
       err = (Sk - S0) / 15;
      
-      if (k == 6 && err > tol)
+      if (k == 8 && err > tol)
         fprintf("> %ith Order reached.\n", k);
         fprintf("> err = %f.\n", err);
       end
@@ -31,7 +31,9 @@ function [area, B0] = AdQuad(fn)
         end
       end
       
-      plot(k, err, "*");
+      plot(k, err, "r*", "LineWidth", 1.5);
+      xlabel("Order");
+      ylabel("Value");
       hold on;
     end
     
