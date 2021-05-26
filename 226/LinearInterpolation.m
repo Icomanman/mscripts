@@ -2,7 +2,8 @@
 function u = LinearInterpolation(k, w, zeta, step)
   
   % Forcing Function
-  pt = @(t) 10 * sin(pi * t / 0.6);
+  % pt = @(t) 10 * sin(pi * t / 0.6);
+  pt = @(t) 5 * sin(4.8 * pi * t / 0.6);
   
   % Coefficients:
   e = exp(-zeta * w * step);
@@ -29,19 +30,37 @@ function u = LinearInterpolation(k, w, zeta, step)
   Cp = (1 / k) *  ((-1 / step) + e * ((Ap1 + (zr / step)) * sine + cosine / step));
   Dp = (1 / (k * step)) * (1 - e * (zr * sine + cosine));
   
-  u = zeros(11, 1);
-  u_dot = zeros(11, 1);
+  % set @ 10 sec (constant)
+  lim = 10;
+  
+  t = zeros(lim / step, 1);
+  u = zeros(lim / step, 1);
+  u_dot = zeros(lim / step, 1);
+  p = zeros(lim / step, 1);
+  
   u(1) = 0;
   u_dot(1) = 0;
-  p = pt(0);
-  i = 1;
-  while (i <= 10)
-    u(i + 1) = A * u(i) + B * u_dot(i) + C * p + D * pt((i) / 10);
-    u_dot(i + 1) = Ap * u(i) + Bp * u_dot(i) + Cp * p + Dp * pt((i) / 10);
-    i = i + 1;
-    p = pt(i / 10);
+  p(1) = pt(0);
+  
+  cutoff = 4.2;
+  
+  for i = 1 : (lim / step)
+    
+    if ((i*step) > cutoff)
+      p(i + 1) = 0;
+    else
+      p(i + 1) = pt(i * step);
+    end
+    
+    u(i + 1) = A * u(i) + B * u_dot(i) + C * p(i) + D * p(i + 1);
+    u_dot(i + 1) = Ap * u(i) + Bp * u_dot(i) + Cp * p(i) + Dp * p(i + 1);
+    
+    t(i) = (i - 1) * step;
+    
   end
   
-  plot(u);
+  t((lim/step) + 1) = (lim * step) +  t(lim/step);
+  plot(t, u, "LineWidth", 1.5);
+  xlim([-0.2 10]);
   
 end
