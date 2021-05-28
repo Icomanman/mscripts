@@ -32,11 +32,13 @@ function u = LinearInterpolation(k, w, zeta, step)
   
   % set @ 10 sec (constant)
   lim = 10;
+  n = lim / step;
   
-  t = zeros(lim / step, 1);
-  u = zeros(lim / step, 1);
-  u_dot = zeros(lim / step, 1);
-  p = zeros(lim / step, 1);
+  p = zeros(n, 1);
+  t = zeros(n, 1);
+  
+  u = zeros(n, 1);
+  u_dot = zeros(n, 1);
   
   u(1) = 0;
   u_dot(1) = 0;
@@ -44,7 +46,7 @@ function u = LinearInterpolation(k, w, zeta, step)
   
   cutoff = 4.2;
   
-  for i = 1 : (lim / step)
+  for i = 1 : n
     
     if ((i*step) > cutoff)
       p(i + 1) = 0;
@@ -59,7 +61,7 @@ function u = LinearInterpolation(k, w, zeta, step)
     
   end
   
-  t((lim/step) + 1) = (lim * step) +  t(lim/step);
+  t((n) + 1) = (lim * step) +  t(n);
   plot(t, u, "LineWidth", 1.5);
   xlim([0 10]);
   ylim([-0.5 0.5]);
