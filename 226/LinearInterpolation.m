@@ -62,8 +62,9 @@ function u = LinearInterpolation(k, w, zeta, step)
   end
   
   t((n) + 1) = (lim * step) +  t(n);
-  plot(t, u, "LineWidth", 1.5);
+  plot(t, u, "LineWidth", 2);
   xlim([0 10]);
-  ylim([-0.5 0.5]);
-  
+  ylim([-0.35 0.35]);
+%   legend("Linear Interpolation");
+  hold on;
 end
