@@ -2,8 +2,8 @@
 function u = LinearInterpolation(k, w, zeta, step)
   
   % Forcing Function
-  % pt = @(t) 10 * sin(pi * t / 0.6);
-  pt = @(t) 5 * sin(4.8 * pi * t / 0.6);
+  % pt = @(s) 10 * sin(pi * s / 0.6);
+  pt = @(t) 5 * sin(4.8 * pi * t);
   
   % Coefficients:
   e = exp(-zeta * w * step);
@@ -61,6 +61,7 @@ function u = LinearInterpolation(k, w, zeta, step)
   
   t((lim/step) + 1) = (lim * step) +  t(lim/step);
   plot(t, u, "LineWidth", 1.5);
-  xlim([-0.2 10]);
+  xlim([0 10]);
+  ylim([-0.5 0.5]);
   
 end
