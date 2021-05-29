@@ -62,9 +62,7 @@ function u = LinearInterpolation(k, w, zeta, step)
   end
   
   t((n) + 1) = (lim * step) +  t(n);
-  plot(t, u, "LineWidth", 2);
-  xlim([0 10]);
-  ylim([-0.35 0.35]);
-%   legend("Linear Interpolation");
+    % "#7E2F8E" - Purple
+  plot(t, u, "--", "Color", "#7E2F8E", "LineWidth", 3);
   hold on;
 end

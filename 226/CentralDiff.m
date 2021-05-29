@@ -55,13 +55,11 @@ function u = CentralDiff(k, w, zeta, step)
   
   t(n + 1) = (lim * step) +  t(n);
   % t(n + 2) = (lim * step) +  t(n + 1);
-  plot(t, u(2 : end), "Color","#A2142F" , "LineWidth", 2);
-  % "#A2142F" - Maroon
-  % "#7E2F8E" - Purple
-  % "#77AC30" - Green
-  xlim([0 10]);
-  ylim([-0.35 0.35]);
   
-  legend("Linear Interpolation", "Central Difference");
-  hold off;
+  % "#D95319" - Orange
+  plot(t, u(2 : end), "Color","#D95319" , "LineWidth", 2);
+  
+  % "#A2142F" - Maroon
+  
+  hold on;
 end
