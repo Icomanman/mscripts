@@ -25,7 +25,6 @@ function peaks = NewmarkRS(m, T, zeta, acc, t)
   u(1) = 0;
   u_dot(1) = 0;
   p(1) = acc(1);
-  p_hat(1) = 0;
   
   m = k / w^2;
   c = 2 * m * w * zeta;
@@ -39,9 +38,17 @@ function peaks = NewmarkRS(m, T, zeta, acc, t)
   k_hat = k + a1;
   u_ddot(1) = (p(1) - (c * u_dot(1)) - (k * u(1))) / m;
   
+  p_hat(1) = (g * m * acc(1))...
+           + a1 * u(1)...
+           + a2 * u_dot(1)...
+           + a3 * u_ddot(1);
+  
   for i = 1 : (n - 1)
 
-    p_hat(i + 1) = (g * m * acc(i + 1)) + a1 * u(i) + a2 * u_dot(i) + a3 * u_ddot(i);
+    p_hat(i + 1) = (g * m * acc(i + 1))...
+                 + a1 * u(i)...
+                 + a2 * u_dot(i)...
+                 + a3 * u_ddot(i);
     
     u(i + 1) = p_hat(i + 1) / k_hat;
     
@@ -58,8 +65,12 @@ function peaks = NewmarkRS(m, T, zeta, acc, t)
   u_max = max(max(u), abs(min(u)));
   u_dot_max = max(max(u_dot), abs(min(u_dot)));
   u_ddot_max = max(max(u_ddot), abs(min(u_ddot)));
+  ug = max(abs(acc));
+  peaks = [u_max, u_dot_max, u_ddot_max, ug];
   
-  peaks = [u_max, u_dot_max, u_ddot_max];
+  if (u_max == Inf)
+    peaks = [0, 0, 0, ug];
+  end
   
 %   plot(t, u, "LineWidth", 1.5);
 %   hold on;

@@ -1,13 +1,21 @@
-function u = DirectInteg(acc, t, w, zeta)
-  wd = w * sqrt(1 - zeta^2); 
-  lim = length(acc);
-  u = zeros(lim, 1);
+function [u, u_dot] = DirectInteg(acc, t)
   
-  for i = 1 : lim
-    u(i) = 9.80665 * acc(i) * exp(-zeta * w * t(i)) * sin(wd * t(i)) / wd;
+  n = length(acc);
+  u = zeros(n, 1);
+  u_dot = zeros(n, 1);
+  
+  step = t(2) - t(1);
+  
+  for i = 1 : n
+    
+    u_dot(i) = 1;
+    
   end  
-  plot(t, u);
-%   hold on;
-%   plot(t, acc, "b");
-%   hold off;
+  
+  for i = 1 : n
+    
+    u(i) = 1;
+    
+  end  
+  
 end
