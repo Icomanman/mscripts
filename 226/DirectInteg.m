@@ -1,13 +1,21 @@
-function u = DirectInteg(acc, t, w, zeta)
-  wd = w * sqrt(1 - zeta^2); 
-  lim = length(acc);
-  u = zeros(lim, 1);
-  
-  for i = 1 : lim
-    u(i) = 9.80665 * acc(i) * exp(-zeta * w * t(i)) * sin(wd * t(i)) / wd;
+function u = DirectInteg(acc, t)
+  g = 386.08858;
+  n = length(acc);
+  u_dot = zeros(n, 1);
+  % u = zeros(n, 1);
+  step = t(2) - t(1);
+
+  u_dot(1) = 0;
+  for i = 1 : n - 1
+    u_dot(i + 1) = u_dot(i) + (g * acc(i) * step); 
   end  
-  plot(t, u);
-%   hold on;
-%   plot(t, acc, "b");
-%   hold off;
+
+  u_dot_max = max(u_dot);
+  u_dot_min = min(u_dot);
+  t_idx_min = find(u_dot == u_dot_min);
+  t_idx_max = find(u_dot == u_dot_max);
+  fprintf("Min: %d at %d. \n", u_dot_min, t(t_idx_min));
+  fprintf("Max: %d at %d. \n", u_dot_max, t(t_idx_max));
+  % plot(t, u_dot);
+
 end
