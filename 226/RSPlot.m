@@ -14,7 +14,10 @@ function [u, psv, psa] = RSPlot(m, T, zeta, acc, t)
     psa(i) = u(i) * (w^2) / g;
   end
   
-%     plot(T, u, "LineWidth", 2);
-  TriPlot(psv, T);
+%   plot(T, u, "LineWidth", 2);
+
+%   peaks = DirectInteg(acc, t);
+%   psv = psv / peaks(2);
+  TriPlot(psv, T, 0);
   
 end

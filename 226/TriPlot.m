@@ -23,17 +23,22 @@ function TriPlot(psv, T, norm)
 %     d(i) = log(diff);
     
   end
-
+  
+  v = y(T == 1);
+  fprintf("v at T = 1: %f\n", v);
+  
+  loglog(T, y, "LineWidth", 2), grid on;
+  hold on;
+  xlabel("Tn, sec");
+  
   if (norm == 1)
-    loglog(T, y, "LineWidth", 2), grid on;
+    xticks([0.02 0.05 0.1 0.2 0.5 1 2 5 10 20 50]);
+    yticks([1, 2, 3, 4, 5]);
     ylabel("V / Vg");
   else
-    loglog(T, y, "LineWidth", 2), grid on;
     xticks([0.02 0.05 0.1 0.2 0.5 1 2 5 10 20 50]);
     yticks([0.2 0.5 1 2 5 10 20 50 100]);
-    
     ylabel("V, in/sec");
   end
-  xlabel("Tn, sec");
-
+  
 end
