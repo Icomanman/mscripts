@@ -33,7 +33,7 @@ function peaks = DirectInteg(acc, t)
             max(abs(u_dot_min), u_dot_max),...
             max(abs(u_min), u_max)];
   
-%   plot(t, u_dot, "LineWidth", 1.5);
+  plot(t, u, "LineWidth", 1.5);
 %   grid on;
 %   xlim([0 20]);
 %   ylim([-30 30]);

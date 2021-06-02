@@ -1,4 +1,6 @@
 function TriPlot(psv, T, norm)
+  
+  g = 386.08858;
   n = length(psv);
   C1 = zeros(n, 1);
   C2 = zeros(n, 1);
@@ -6,7 +8,6 @@ function TriPlot(psv, T, norm)
   x = zeros(n, 1);
   y = zeros(n, 1);
   b = zeros(n, 1);
-  d = zeros(n, 1);
   
   for i = 1 : n
     C1(i) = 2 * pi * psv(i) / T(i);
@@ -24,21 +25,22 @@ function TriPlot(psv, T, norm)
     
   end
   
-  v = y(T == 1);
-  fprintf("v at T = 1: %f\n", v);
-  
-  loglog(T, y, "LineWidth", 2), grid on;
+  loglog(T, y, "LineWidth", 3);
+  % grid on;
   hold on;
   xlabel("Tn, sec");
+  xlim([0.02 50]);
   
   if (norm == 1)
     xticks([0.02 0.05 0.1 0.2 0.5 1 2 5 10 20 50]);
-    yticks([1, 2, 3, 4, 5]);
-    ylabel("V / Vg");
+    yticks([0.02 0.05 0.1 0.2 0.5 1, 2, 5 10]);
+    ylabel("V / PGV");
+    ylim([0.02 10]);
   else
     xticks([0.02 0.05 0.1 0.2 0.5 1 2 5 10 20 50]);
     yticks([0.2 0.5 1 2 5 10 20 50 100]);
     ylabel("V, in/sec");
-  end
+    ylim([0.2 100]);
+  end 
   
 end
