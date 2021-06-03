@@ -1,6 +1,5 @@
 function TriPlot(psv, T, norm)
   
-  g = 386.08858;
   n = length(psv);
   C1 = zeros(n, 1);
   C2 = zeros(n, 1);
@@ -26,16 +25,18 @@ function TriPlot(psv, T, norm)
   end
   
   loglog(T, y, "LineWidth", 3);
-  % grid on;
   hold on;
+  Tripartite;
+  % grid on;
+
   xlabel("Tn, sec");
   xlim([0.02 50]);
   
   if (norm == 1)
     xticks([0.02 0.05 0.1 0.2 0.5 1 2 5 10 20 50]);
-    yticks([0.02 0.05 0.1 0.2 0.5 1, 2, 5 10]);
+    yticks([0.02 0.05 0.1 0.2 0.5 1 2]);
     ylabel("V / PGV");
-    ylim([0.02 10]);
+    ylim([0.02 5]);
   else
     xticks([0.02 0.05 0.1 0.2 0.5 1 2 5 10 20 50]);
     yticks([0.2 0.5 1 2 5 10 20 50 100]);
