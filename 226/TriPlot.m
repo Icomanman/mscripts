@@ -24,8 +24,8 @@ function TriPlot(psv, T, norm)
     
   end
   
-  loglog(T, y, "LineWidth", 3);
-  hold on;
+%   loglog(T, y, "LineWidth", 3);
+%   hold on;
   Tripartite;
   % grid on;
 
@@ -34,14 +34,14 @@ function TriPlot(psv, T, norm)
   
   if (norm == 1)
     xticks([0.02 0.05 0.1 0.2 0.5 1 2 5 10 20 50]);
-    yticks([0.02 0.05 0.1 0.2 0.5 1 2]);
+    yticks([0.02 0.05 0.1 0.2 0.5 1 2 5]);
     ylabel("V / PGV");
-    ylim([0.02 5]);
+    ylim([0.02 3]);
   else
     xticks([0.02 0.05 0.1 0.2 0.5 1 2 5 10 20 50]);
-    yticks([0.2 0.5 1 2 5 10 20 50 100]);
+    yticks([0.2 0.5 1 2 5 10 20 50 100 200]);
     ylabel("V, in/sec");
-    ylim([0.2 100]);
+    ylim([0.2 200]);
   end 
   
 end

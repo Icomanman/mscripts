@@ -18,13 +18,13 @@ function [u, psv, psa] = RSPlot(m, T, zeta, acc, t)
 %   xlim([0 3]);
 
   % peak values for a given period:
-  period = 2;
+  period = 1;
   a = psa(T == period);
   v = psv(T == period);
   d = u(T == period);
 
   % for normalized pseudo-acceleration and displacement:
-  norm = 1; % true;
+  norm = 0; % true;
   
   if (norm == 1)
     peaks = DirectInteg(acc, t);

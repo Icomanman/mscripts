@@ -4,64 +4,65 @@
 % Program 17.2: MATLAB program to draw tripartite plot 
 %********************************************************************
 
-% pga = 0.373464;
-pga = 0.319;
-pgd = 8.40;
-% pgd = 105.911328;
+pga = 0.373464;
+% pga = 0.319;
+% pgv = 13.09;
+% pgd = 8.40;
+pgd = 105.911328;
 % pgd = 1;
 
 % g = 9.80665;
 g = 386.08858;
-g = g / pga;
+% g = g / pga;
+
+x=0.01:1:100;
+% x= x .* pgv;
 
 for k=.00001:.00001:.0001
 
-     x=0.01:1:100;
-     t=log(2*pi*k/pgd)-log(x);
-     y=exp(t);
+   t=log(2*pi*k/pgd)-log(x);
+   y=exp(t);
 
-     loglog(x,y,'k'), grid on;
-     hold on;
+   loglog(x,y,'k'), grid on;
+   hold on;
 
-     t=log(k*g/(2*pi))+log(x);
-     y=exp(t);
+   t=log(k*g/(2*pi))+log(x);
+   y=exp(t);
 
-     loglog(x,y,'k')
-     hold on;
+   loglog(x,y,'k')
+   hold on;
 
 end
 
 for k=.0001:.0001:.001
 
-     x=0.01:1:100;
-     t=log(2*pi*k/pgd)-log(x);
-     y=exp(t);
+   t=log(2*pi*k/pgd)-log(x);
+   y=exp(t);
 
-     loglog(x,y,'k'), grid on;
-     hold on;
+   loglog(x,y,'k'), grid on;
+   hold on;
 
-     t=log(k*g/(2*pi))+log(x);
-     y=exp(t);
+   t=log(k*g/(2*pi))+log(x);
+   y=exp(t);
 
-     loglog(x,y,'k');
-     hold on;
+   loglog(x,y,'k');
+   hold on;
 
 end
 
 for k=.001:.001:.01
 
-     x=0.01:1:100; 
-     t=log(2*pi*k/pgd)-log(x);
-     y=exp(t);
+   t=log(2*pi*k/pgd)-log(x);
+   y=exp(t);
 
-     loglog(x,y,'k'),grid on; 
-     hold on;
+   loglog(x,y,'k'),grid on; 
+   hold on;
 
-     t=log(k*g/(2*pi))+log(x);
-     y=exp(t);
+   t=log(k*g/(2*pi))+log(x);
+   y=exp(t);
 
-     loglog(x,y,'k');
-     hold on;
+   loglog(x,y,'k');
+   hold on;
 
 end
 
@@ -71,99 +72,94 @@ ylabel(' spectral velocity sv in cm/sec')
 
 for k=.01:.01:.1
 
-     x=0.01:1:100;
-     t=log(2*pi*k/pgd)-log(x);
-     y=exp(t);
+   t=log(2*pi*k/pgd)-log(x);
+   y=exp(t);
 
-     loglog(x,y,'k'), grid on;
-     hold on;
+   loglog(x,y,'k'), grid on;
+   hold on;
 
-     t=log(k*g/(2*pi))+log(x);
-     y=exp(t);
+   t=log(k*g/(2*pi))+log(x);
+   y=exp(t);
 
-     loglog(x,y,'k');
-     hold on;
+   loglog(x,y,'k');
+   hold on;
 
 end
 
 for k=.1:.1:1 
 
-     x=0.01:1:100;
-     t=log(2*pi*k/pgd)-log(x);
-     y=exp(t);
+   t=log(2*pi*k/pgd)-log(x);
+   y=exp(t);
 
-     loglog(x,y,'k'), grid on;
-     hold on;
+   loglog(x,y,'k'), grid on;
+   hold on;
 
-     t=log(k*g/(2*pi))+log(x);
-     y=exp(t);
-     loglog(x,y,'k');
-     hold on;
+   t=log(k*g/(2*pi))+log(x);
+   y=exp(t);
+   loglog(x,y,'k');
+   hold on;
 
 end
 
 for k=1:1:10 
 
-     x=0.01:1:100;
-     t=log(2*pi*k/pgd)-log(x);
-     y=exp(t);
+   t=log(2*pi*k/pgd)-log(x);
+   y=exp(t);
 
-     loglog(x,y,'k'), grid on;
-     hold on;
+   loglog(x,y,'k'), grid on;
+   hold on;
 
-     t=log(k*g/(2*pi))+log(x);
-     y=exp(t);
+   t=log(k*g/(2*pi))+log(x);
+   y=exp(t);
 
-     loglog(x,y,'k');
-     hold on;
+   loglog(x,y,'k');
+   hold on;
 
 end
 
 for k=10:10:100 
 
-     x=0.01:1:100;
-     t=log(2*pi*k/pgd)-log(x);
-     y=exp(t);
+   t=log(2*pi*k/pgd)-log(x);
+   y=exp(t);
 
-     loglog(x,y,'k'), grid on;
-     hold on;
+   loglog(x,y,'k'), grid on;
+   hold on;
 
-     t=log(k*g/(2*pi))+log(x);
-     y=exp(t);
+   t=log(k*g/(2*pi))+log(x);
+   y=exp(t);
 
-     loglog(x,y,'k');
-     hold on;
+   loglog(x,y,'k');
+   hold on;
 
 end
 
 for k=100:100:1000 
 
-     x=0.01:1:100;
-     t=log(2*pi*k/pgd)-log(x);
-     y=exp(t);
+   t=log(2*pi*k/pgd)-log(x);
+   y=exp(t);
 
-     loglog(x,y,'k'), grid on;
-     hold on;
+   loglog(x,y,'k'), grid on;
+   hold on;
 
-     t=log(k*g/(2*pi))+log(x);
-     y=exp(t);
+   t=log(k*g/(2*pi))+log(x);
+   y=exp(t);
 
-     loglog(x,y,'k');
-     hold on;
+   loglog(x,y,'k');
+   hold on;
 
 end
 
 for k=1000:1000:10000 
-     x=0.01:1:100;
-     t=log(2*pi*k/pgd)-log(x);
-     y=exp(t);
-     loglog(x,y,'k'), grid on;
-     hold on;
 
-     t=log(k*g/(2*pi))+log(x);
-     y=exp(t);
+   t=log(2*pi*k/pgd)-log(x);
+   y=exp(t);
+   loglog(x,y,'k'), grid on;
+   hold on;
 
-     loglog(x,y,'k') 
+   t=log(k*g/(2*pi))+log(x);
+   y=exp(t);
+
+   loglog(x,y,'k') 
 end
 
 % axis([0.01 100 0.02 500]) % d=xlsread(‘svdata’); sv=‘sv.out’
