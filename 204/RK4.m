@@ -37,9 +37,9 @@ function RK4()
     
   end
   
-  plot(t, y, "--" ,"LineWidth", 2);
+  plot(t, y, "--", "Color", "#7E2F8E","LineWidth", 2);
   hold on;
-  plot(t, z, "LineWidth", 1.5);
+  plot(t, z, "Color", "#0072BD", "LineWidth", 1.5);
   xlabel("t");
   ylabel("Function Values: y and z");
   legend("y Values", "z Values");

@@ -24,7 +24,7 @@ function mse = EulerMethod()
 		T(i + 1) = T(i) + dT * step;
   end
   F = T;
-	plot(t, T, "LineWidth", 1);
+	plot(t, T, "Color","#D95319", "LineWidth", 1);
   hold on;
   
   % Backward:
@@ -35,7 +35,7 @@ function mse = EulerMethod()
      T(i + 1) = T(i) + dT * step;
   end
   B = T;
-	plot(t, T, "--", "LineWidth", 2);
+	plot(t, T, "--", "Color", "#7E2F8E", "LineWidth", 2);
   xlabel("Time, t in s");
   ylabel("Temp, T in K");
   legend("Forward", "Backward");

@@ -1,40 +1,44 @@
 
 % Shooting Method
-function z = shoot()
+function err = shoot(z, to_plot)
   
   dz = -9.8;
   yf = 100; % final elev
   zf = 0;
   
   step = 0.25;
-  lim = 100;
+  lim = 50;
   i = 1;
   
   y = 0;
-  z = 43; % init guess
-  while z >= zf && i <= lim
-   
-    plot(i, z, "b*", "LineWidth", 1.5);
+    while z >= zf && i <= lim
+    
+      if (to_plot == 1)
+        plot(i, z, "*", "Color", "#0072BD", "LineWidth", 2);
+        hold on;
+
+        plot(i, y, "o", "Color", "#7E2F8E", "LineWidth", 2);
+        hold on;
+      end
+      
+      y = y + (step * z);
+      z = z + (step * dz);
+
+      i = i + 1;
+    end
+    
+    err = (yf - y) / yf;
+  
+  if (to_plot == 1)  
+    plot(i, z, "r*", "LineWidth", 2);
     hold on;
-    
-    plot(i, y, "ro", "LineWidth", 1.5);
+
+    plot(i, y, "ro", "LineWidth", 2);
     hold on;
-    
-    y = y + (step * z);
-    z = z + (step * dz);
-    
-    i = i + 1;
+
+    xlabel(["Steps, h: ", step]);
+    ylabel("Velocity and Elevation");
+    legend("Velocity, m/s", "Elevation, m");
+    hold off;
   end
-  
-%   plot(i, z, "b*", "LineWidth", 1.5);
-%   hold on;
-%     
-%   plot(i, y, "ro", "LineWidth", 1.5);
-%   hold on;
-    
-  xlabel(["Steps, h: ", step]);
-  ylabel("Velocity and Elevation");
-  legend("Velocity, m/s", "Elevation, m");
-  hold off;
-  
 end
