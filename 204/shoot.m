@@ -2,7 +2,10 @@
 % Shooting Method
 function err = shoot(z, to_plot)
   
-  dz = -9.8;
+  % a)
+%   dz = -9.8;
+  % b)
+  dz = -9.8 - (z/40);
   yf = 100; % final elev
   zf = 0;
   
