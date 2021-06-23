@@ -1,13 +1,13 @@
 
 % Stodola-Vianello
-function [eig, phi] = StodolaVia(K, M)
+function [lambda, phi] = StodolaVia(K, M)
   B = (M^-1) * K;
   tol = 10e-5;
   lim = 20;
   
   % init vector:
-  % y0 = ones(length(diag(M)), 1);
-  y0 = [1 -1.5 2]';
+  y0 = ones(length(diag(M)), 1);
+	% y0 = [2 -2 1]';
   
   err = 1;
   i = 1;
@@ -15,13 +15,14 @@ function [eig, phi] = StodolaVia(K, M)
   while i <= lim && abs(err) >= tol
     
     y = B * y0;
-   
+    
     if(min(abs(y)) > 0)
+      err = (max(y) - max(y0))/ max(y0);
+      lambda = min(abs(y)); 
       y = y ./ min(abs(y));
-      eig = min(abs(y));      
     end
     
-    err = (max(y) - max(y0))/ max(y0);
+    
     y0 = y;
     i = i + 1;
   end

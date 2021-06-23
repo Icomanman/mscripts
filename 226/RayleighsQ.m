@@ -7,8 +7,8 @@ function [Eig, Phi] = RayleighsQ(K, M, Shifts)
   
   for i = 1 : length(Eig)
     
-    [eig, phi] = InverseVector(K, M, Shifts(i));
-    Eig(i) = eig;
+    [lambda, phi] = InverseVector(K, M, Shifts(i));
+    Eig(i) = lambda;
     Phi(:, i) = phi;
     
   end

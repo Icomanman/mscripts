@@ -3,9 +3,9 @@
 function err = shoot(z, to_plot)
   
   % a)
-  % dz = -9.8;
+  dz = -9.8;
   % b)
-  dz = -9.8 - (z/40);
+%   dz = -9.8 - (z/40);
   yf = 100; % final elev
   zf = 0;
   
