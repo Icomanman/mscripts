@@ -1,0 +1,83 @@
+# Created by Octave 4.2.2, Mon Jun 28 08:57:44 2021 PST <icomanman@sota1911>
+# name: L
+# type: matrix
+# rows: 3
+# columns: 1
+ 1.671454508218861
+ 0.4066601375880964
+ 0.7353618726744959
+
+
+# name: M
+# type: matrix
+# rows: 3
+# columns: 1
+ 0.4484251004873249
+ 0.3373069112005168
+ 3.112525130059104
+
+
+# name: Mf
+# type: matrix
+# rows: 3
+# columns: 3
+ 0.36261 0 0
+ 0 0.36261 0
+ 0 0 0.181305
+
+
+# name: PHI
+# type: matrix
+# rows: 3
+# columns: 3
+ 0.4268142820784155 0.5513179454345429 2.124665479747437
+ 0.7446402261404452 0.3553421921535534 -1.889303607072941
+ 1 -1 1
+
+
+# name: k
+# type: matrix
+# rows: 3
+# columns: 3
+ 2 -1 0
+ -1 1.5 -0.5
+ 0 -0.5 0.5
+
+
+# name: kf
+# type: scalar
+880
+
+
+# name: m
+# type: matrix
+# rows: 3
+# columns: 3
+ 1 0 0
+ 0 1 0
+ 0 0 0.5
+
+
+# name: mf
+# type: scalar
+0.36261
+
+
+# name: w
+# type: matrix
+# rows: 3
+# columns: 1
+ 24.89383558921633
+ 57.35276799189633
+ 83.7359685884383
+
+
+# name: xi
+# type: matrix
+# rows: 3
+# columns: 1
+ 3.727388378577407
+ 1.205608672946377
+ 0.2362589350918854
+
+
